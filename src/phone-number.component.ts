@@ -17,7 +17,7 @@ import {
     NG_VALIDATORS,
     NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import * as glibphone from 'google-libphonenumber';
+// import * as glibphone from 'google-libphonenumber';
 import { Country } from './country.model';
 import { CountryService } from './country.service';
 
@@ -74,7 +74,7 @@ export class PhoneNumberComponent
 
     value = '';
 
-    @ViewChild('phoneNumberInput') phoneNumberInput: ElementRef;
+    @ViewChild('phoneNumberInput', {static: true}) phoneNumberInput: ElementRef;
 
     /**
      * Util function to check if given text starts with plus sign
@@ -252,14 +252,15 @@ export class PhoneNumberComponent
 
         if (value) {
             // validating number using the google's lib phone
-            const phoneUtil = glibphone.PhoneNumberUtil.getInstance();
-            try {
-                let phoneNumber = phoneUtil.parse(value);
-                let isValidNumber = phoneUtil.isValidNumber(phoneNumber);
-                return isValidNumber ? null : validationError;
-            } catch (ex) {
-                return validationError;
-            }
+            // const phoneUtil = glibphone.PhoneNumberUtil.getInstance();
+            // try {
+            //     let phoneNumber = phoneUtil.parse(value);
+            //     let isValidNumber = phoneUtil.isValidNumber(phoneNumber);
+            //     return isValidNumber ? null : validationError;
+            // } catch (ex) {
+            //     return validationError;
+            // }
+            return null;
         }
         return null;
     }
